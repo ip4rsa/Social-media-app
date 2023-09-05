@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_app/screens/logIn_screen.dart';
-
+import 'package:instagram_app/screens/home_screen.dart';
 import 'constants/colors.dart';
 
 void main() {
@@ -45,7 +44,7 @@ class InstagramApp extends StatelessWidget {
           ),
         ),
       ),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }

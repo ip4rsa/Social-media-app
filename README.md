@@ -1,6 +1,6 @@
 # instagram_app
 
-A new Flutter project.
+Social media app similar to Instagram
 
 ## Getting Started
 

@@ -27,6 +27,9 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 17),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 20,
+                  ),
                   _getPosterHeader(context),
                   const SizedBox(height: 15),
                   _getPoster(),
@@ -49,9 +52,9 @@ class HomeScreen extends StatelessWidget {
           Positioned(
             top: 0,
             child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(15)),
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
               child: Image.asset(
-                'assets/images/Rectangle 17.png',
+                'assets/images/post1-1.png',
                 height: 360,
               ),
             ),

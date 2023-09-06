@@ -21,6 +21,18 @@ class InstagramApp extends StatelessWidget {
             fontWeight: FontWeight.w400,
             fontSize: 18,
           ),
+          headline2: TextStyle(
+            color: wihtColor,
+            fontFamily: 'GB',
+            fontWeight: FontWeight.w400,
+            fontSize: 13,
+          ),
+          headline3: TextStyle(
+            color: wihtColor,
+            fontFamily: 'SM',
+            fontWeight: FontWeight.w400,
+            fontSize: 13,
+          ),
           headline4: TextStyle(
             color: wihtColor,
             fontFamily: 'GB',

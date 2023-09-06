@@ -17,17 +17,26 @@ class HomeScreen extends StatelessWidget {
         actions: [Image.asset('assets/images/Group 39.png')],
       ),
       backgroundColor: darkBlueColor,
-      body: Center(
-        child: SizedBox(
-          height: 80,
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            itemCount: 12,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return index == 0 ? _getStoryAddBox() : _getStoryBox(64, 64);
-            },
-          ),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            SizedBox(
+              height: 110,
+              child: ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 12,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return index == 0 ? _getStoryAddBox() : _getStoryBox(64, 64);
+                },
+              ),
+            ),
+            const SizedBox(height: 30),
+            _getPostsList()
+          ],
         ),
       ),
     );
@@ -37,6 +46,7 @@ class HomeScreen extends StatelessWidget {
     return ListView.builder(
       physics: const BouncingScrollPhysics(),
       itemCount: 10,
+      shrinkWrap: true,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 17),
@@ -144,33 +154,30 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _getPosterHeader(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 17),
-      child: Row(
-        children: [
-          _getStoryBox(40, 40),
-          const SizedBox(width: 12),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('ParsaSajjadian',
-                  style: Theme.of(context).textTheme.headline2),
-              const SizedBox(height: 4),
-              Text('پارسا سجادیان برنامه نویس',
-                  style: Theme.of(context).textTheme.headline3),
-            ],
-          ),
-          const Spacer(),
-          Icon(CupertinoIcons.ellipsis_vertical, color: wihtColor)
-        ],
-      ),
+    return Row(
+      children: [
+        _getStoryBox(40, 40),
+        const SizedBox(width: 2),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('ParsaSajjadian',
+                style: Theme.of(context).textTheme.headline2),
+            const SizedBox(height: 4),
+            Text('پارسا سجادیان برنامه نویس',
+                style: Theme.of(context).textTheme.headline3),
+          ],
+        ),
+        const Spacer(),
+        Icon(CupertinoIcons.ellipsis_vertical, color: wihtColor)
+      ],
     );
   }
 
   Widget _getStoryBox(double sizeH, double sizeW) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.only(right: 12, left: 12, top: 2),
       child: Column(
         children: [
           DottedBorder(
@@ -193,11 +200,11 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          // const SizedBox(height: 10),
-          // Text(
-          //   'Parsa',
-          //   style: TextStyle(color: wihtColor, fontFamily: 'GM'),
-          // ),
+          const SizedBox(height: 10),
+          Text(
+            'Parsa',
+            style: TextStyle(color: wihtColor, fontFamily: 'GM'),
+          ),
         ],
       ),
     );
@@ -206,33 +213,43 @@ class HomeScreen extends StatelessWidget {
   Widget _getStoryAddBox() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Container(
-        width: 80,
-        height: 64,
-        decoration: BoxDecoration(
-          color: wihtColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(17),
-          ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(3.0),
-          child: Container(
-            width: 64,
-            height: 64,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: 80,
+            height: 80,
             decoration: BoxDecoration(
-              color: darkBlueColor,
+              color: wihtColor,
               borderRadius: const BorderRadius.all(
-                Radius.circular(15),
+                Radius.circular(17),
               ),
             ),
-            child: Icon(
-              CupertinoIcons.plus,
-              color: pinkColor,
-              size: 30,
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  color: darkBlueColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(15),
+                  ),
+                ),
+                child: Icon(
+                  CupertinoIcons.plus,
+                  color: pinkColor,
+                  size: 30,
+                ),
+              ),
             ),
           ),
-        ),
+          const SizedBox(height: 10),
+          Text(
+            'Your Story',
+            style: TextStyle(color: wihtColor, fontFamily: 'GM'),
+          ),
+        ],
       ),
     );
   }

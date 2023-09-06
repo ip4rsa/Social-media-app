@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,26 +18,37 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: darkBlueColor,
       body: Center(
-        child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 17),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  _getPosterHeader(context),
-                  const SizedBox(height: 15),
-                  _getPoster(),
-                ],
-              ),
-            );
-          },
+        child: SizedBox(
+          height: 80,
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemCount: 12,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return index == 0 ? _getStoryAddBox() : _getStoryBox(64, 64);
+            },
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _getPostsList() {
+    return ListView.builder(
+      physics: const BouncingScrollPhysics(),
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 17),
+          child: Column(
+            children: [
+              _getPosterHeader(context),
+              const SizedBox(height: 15),
+              _getPoster(),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -138,7 +148,7 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 17),
       child: Row(
         children: [
-          _getStoryBox(),
+          _getStoryBox(40, 40),
           const SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -158,51 +168,69 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _getStoryBox() {
-    return DottedBorder(
-      borderType: BorderType.RRect,
-      radius: const Radius.circular(17),
-      padding: const EdgeInsets.all(6),
-      color: pinkColor,
-      dashPattern: const [42, 10],
-      strokeWidth: 2.3,
-      child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
-        child: Container(
-          height: 40,
-          width: 40,
-          color: darkBlueColor,
-          child: Image.asset('assets/images/Parsa.png'),
-        ),
+  Widget _getStoryBox(double sizeH, double sizeW) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Column(
+        children: [
+          DottedBorder(
+            borderType: BorderType.RRect,
+            radius: const Radius.circular(17),
+            padding: const EdgeInsets.all(7),
+            color: pinkColor,
+            dashPattern: const [42, 10],
+            strokeWidth: 2.3,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(15)),
+              child: Container(
+                height: sizeH,
+                width: sizeW,
+                color: darkBlueColor,
+                child: Image.asset(
+                  'assets/images/Parsa.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ),
+          // const SizedBox(height: 10),
+          // Text(
+          //   'Parsa',
+          //   style: TextStyle(color: wihtColor, fontFamily: 'GM'),
+          // ),
+        ],
       ),
     );
   }
 
   Widget _getStoryAddBox() {
-    return Container(
-      width: 64,
-      height: 64,
-      decoration: BoxDecoration(
-        color: wihtColor,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(17),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(
-            color: darkBlueColor,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(15),
-            ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Container(
+        width: 80,
+        height: 64,
+        decoration: BoxDecoration(
+          color: wihtColor,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(17),
           ),
-          child: Icon(
-            CupertinoIcons.plus,
-            color: pinkColor,
-            size: 30,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(3.0),
+          child: Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: darkBlueColor,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15),
+              ),
+            ),
+            child: Icon(
+              CupertinoIcons.plus,
+              color: pinkColor,
+              size: 30,
+            ),
           ),
         ),
       ),

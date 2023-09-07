@@ -3,6 +3,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_app/constants/colors.dart';
+import 'package:instagram_app/screens/share_bottomSeet.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -21,12 +22,24 @@ class HomeScreen extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
+            ElevatedButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  barrierColor: Colors.transparent,
+                  context: context,
+                  builder: (context) => shareBottomSheet(),
+                );
+              },
+              child: Text('data'),
+            ),
+            _getPosterHeader(context),
             const SizedBox(height: 10),
             SizedBox(
               height: 110,
               child: ListView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 itemCount: 12,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
@@ -52,7 +65,6 @@ class HomeScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 17),
           child: Column(
             children: [
-              _getPosterHeader(context),
               const SizedBox(height: 15),
               _getPoster(),
             ],
@@ -97,12 +109,13 @@ class HomeScreen extends StatelessWidget {
                   height: 46,
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Color.fromARGB(84, 198, 198, 198),
-                          Color.fromARGB(59, 255, 255, 255),
-                        ]),
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [
+                        Color.fromARGB(84, 198, 198, 198),
+                        Color.fromARGB(59, 255, 255, 255),
+                      ],
+                    ),
                     borderRadius: BorderRadius.all(Radius.circular(8)),
                   ),
                   child: Row(
@@ -140,7 +153,9 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Image.asset('assets/images/Group 44.png'),
+                      InkWell(
+                          onTap: () {},
+                          child: Image.asset('assets/images/Group 44.png')),
                       Image.asset('assets/images/Vector (2).png'),
                     ],
                   ),

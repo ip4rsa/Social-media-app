@@ -30,7 +30,28 @@ class shareBottomSheet extends StatelessWidget {
             ),
           ),
           height: 425,
+          child: _getGridItems(),
         ),
+      ),
+    );
+  }
+
+  Widget _getGridItems() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 44),
+      child: GridView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: 40,
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          crossAxisSpacing: 33,
+          mainAxisSpacing: 33,
+        ),
+        itemBuilder: (context, index) {
+          return Container(
+            color: Colors.amber,
+          );
+        },
       ),
     );
   }

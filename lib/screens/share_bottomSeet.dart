@@ -101,6 +101,7 @@ class shareBottomSheet extends StatelessWidget {
                                     enabledBorder: InputBorder.none,
                                     focusedBorder: InputBorder.none,
                                     hintText: ' Search User',
+                                    helperStyle: TextStyle(fontFamily: 'GB'),
                                   ),
                                 ),
                               ),

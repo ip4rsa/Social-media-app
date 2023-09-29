@@ -11,98 +11,62 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: darkBlueColor,
-          title: Image.asset('assets/images/moodinger_logo.png', height: 24),
-          actions: [Image.asset('assets/images/Group 39.png')],
-        ),
+      appBar: AppBar(
+        elevation: 0,
         backgroundColor: darkBlueColor,
-        body: CustomScrollView(
-          physics: BouncingScrollPhysics(),
-          slivers: [
-            SliverToBoxAdapter(
-              child: ElevatedButton(
-                onPressed: () {
-                  showModalBottomSheet(
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    barrierColor: Colors.transparent,
-                    context: context,
-                    builder: (context) => DraggableScrollableSheet(
+        title: Image.asset('assets/images/moodinger_logo.png', height: 24),
+        actions: [Image.asset('assets/images/Group 39.png')],
+      ),
+      backgroundColor: darkBlueColor,
+      body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: ElevatedButton(
+              onPressed: () {
+                showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  barrierColor: Colors.transparent,
+                  context: context,
+                  builder: (context) => Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: DraggableScrollableSheet(
                       initialChildSize: 0.45,
                       maxChildSize: 0.7,
                       minChildSize: 0.3,
                       builder: (context, scrollController) =>
                           shareBottomSheet(controller: scrollController),
                     ),
-                  );
-                },
-                child: Text('data'),
-              ),
+                  ),
+                );
+              },
+              child: Text('data'),
             ),
-            SliverToBoxAdapter(child: _storysBox()),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 17),
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 15),
-                        _getPosterHeader(context),
-                        const SizedBox(height: 15),
-                        _getPoster()
-                      ],
-                    ),
-                  );
-                },
-                childCount: 10,
-              ),
-            )
-          ],
-        )
-
-        // child: Column(
-        //   children: [
-        // ElevatedButton(
-        //   onPressed: () {
-        //     showModalBottomSheet(
-        //       isScrollControlled: true,
-        //       backgroundColor: Colors.transparent,
-        //       barrierColor: Colors.transparent,
-        //       context: context,
-        //       builder: (context) => DraggableScrollableSheet(
-        //         initialChildSize: 0.45,
-        //         maxChildSize: 0.7,
-        //         minChildSize: 0.3,
-        //         builder: (context, scrollController) =>
-        //             shareBottomSheet(controller: scrollController),
-        //       ),
-        //     );
-        //   },
-        //   child: Text('data'),
-        // ),
-        // _getPosterHeader(context),
-        // const SizedBox(height: 10),
-        // SizedBox(
-        //   height: 110,
-        //   child: ListView.builder(
-        //     shrinkWrap: true,
-        //     physics: BouncingScrollPhysics(),
-        //     itemCount: 12,
-        //     scrollDirection: Axis.horizontal,
-        //     itemBuilder: (context, index) {
-        //       return index == 0 ? _getStoryAddBox() : _getStoryBox(64, 64);
-        //     },
-        //   ),
-        // ),
-        // const SizedBox(height: 30),
-        // _getPostsList()
-        //   ],
-        // ),
-
-        );
+          ),
+          SliverToBoxAdapter(child: _storysBox()),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 17),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 15),
+                      _getPosterHeader(context),
+                      const SizedBox(height: 15),
+                      _getPoster()
+                    ],
+                  ),
+                );
+              },
+              childCount: 10,
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Widget _getPostsList() {

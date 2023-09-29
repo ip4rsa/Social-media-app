@@ -45,6 +45,71 @@ class shareBottomSheet extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         controller: controller,
         slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  child: Container(
+                    width: 67,
+                    height: 6,
+                    decoration: BoxDecoration(
+                      color: wihtColor,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(100),
+                      ),
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Share',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: wihtColor,
+                      ),
+                    ),
+                    Image.asset('assets/images/icon_share.png'),
+                  ],
+                ),
+                const SizedBox(height: 32),
+                Container(
+                  width: 340,
+                  height: 50,
+                  decoration: const BoxDecoration(
+                    color: Color.fromRGBO(255, 255, 255, 0.4),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(13),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      children: [
+                        Image.asset('assets/images/icon_search.png'),
+                        const Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 7),
+                            child: TextField(
+                              decoration: InputDecoration(
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                hintText: ' Search User',
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 32),
+              ],
+            ),
+          ),
           SliverGrid(
             delegate: SliverChildBuilderDelegate(
               childCount: 40,

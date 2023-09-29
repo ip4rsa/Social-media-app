@@ -11,48 +11,98 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: darkBlueColor,
+          title: Image.asset('assets/images/moodinger_logo.png', height: 24),
+          actions: [Image.asset('assets/images/Group 39.png')],
+        ),
         backgroundColor: darkBlueColor,
-        title: Image.asset('assets/images/moodinger_logo.png', height: 24),
-        actions: [Image.asset('assets/images/Group 39.png')],
-      ),
-      backgroundColor: darkBlueColor,
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                showModalBottomSheet(
-                  backgroundColor: Colors.transparent,
-                  barrierColor: Colors.transparent,
-                  context: context,
-                  builder: (context) => shareBottomSheet(),
-                );
-              },
-              child: Text('data'),
-            ),
-            _getPosterHeader(context),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 110,
-              child: ListView.builder(
-                shrinkWrap: true,
-                physics: BouncingScrollPhysics(),
-                itemCount: 12,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return index == 0 ? _getStoryAddBox() : _getStoryBox(64, 64);
+        body: CustomScrollView(
+          physics: BouncingScrollPhysics(),
+          slivers: [
+            SliverToBoxAdapter(
+              child: ElevatedButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    barrierColor: Colors.transparent,
+                    context: context,
+                    builder: (context) => DraggableScrollableSheet(
+                      initialChildSize: 0.45,
+                      maxChildSize: 0.7,
+                      minChildSize: 0.3,
+                      builder: (context, scrollController) =>
+                          shareBottomSheet(controller: scrollController),
+                    ),
+                  );
                 },
+                child: Text('data'),
               ),
             ),
-            const SizedBox(height: 30),
-            _getPostsList()
+            SliverToBoxAdapter(child: _storysBox()),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 17),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 15),
+                        _getPosterHeader(context),
+                        const SizedBox(height: 15),
+                        _getPoster()
+                      ],
+                    ),
+                  );
+                },
+                childCount: 10,
+              ),
+            )
           ],
-        ),
-      ),
-    );
+        )
+
+        // child: Column(
+        //   children: [
+        // ElevatedButton(
+        //   onPressed: () {
+        //     showModalBottomSheet(
+        //       isScrollControlled: true,
+        //       backgroundColor: Colors.transparent,
+        //       barrierColor: Colors.transparent,
+        //       context: context,
+        //       builder: (context) => DraggableScrollableSheet(
+        //         initialChildSize: 0.45,
+        //         maxChildSize: 0.7,
+        //         minChildSize: 0.3,
+        //         builder: (context, scrollController) =>
+        //             shareBottomSheet(controller: scrollController),
+        //       ),
+        //     );
+        //   },
+        //   child: Text('data'),
+        // ),
+        // _getPosterHeader(context),
+        // const SizedBox(height: 10),
+        // SizedBox(
+        //   height: 110,
+        //   child: ListView.builder(
+        //     shrinkWrap: true,
+        //     physics: BouncingScrollPhysics(),
+        //     itemCount: 12,
+        //     scrollDirection: Axis.horizontal,
+        //     itemBuilder: (context, index) {
+        //       return index == 0 ? _getStoryAddBox() : _getStoryBox(64, 64);
+        //     },
+        //   ),
+        // ),
+        // const SizedBox(height: 30),
+        // _getPostsList()
+        //   ],
+        // ),
+
+        );
   }
 
   Widget _getPostsList() {
@@ -66,7 +116,9 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(height: 15),
-              _getPoster(),
+              _getPosterHeader(context),
+              const SizedBox(height: 15),
+              _getPoster()
             ],
           ),
         );
@@ -232,8 +284,8 @@ class HomeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            width: 80,
-            height: 80,
+            width: 75,
+            height: 75,
             decoration: BoxDecoration(
               color: wihtColor,
               borderRadius: const BorderRadius.all(
@@ -265,6 +317,24 @@ class HomeScreen extends StatelessWidget {
             style: TextStyle(color: wihtColor, fontFamily: 'GM'),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _storysBox() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: SizedBox(
+        height: 110,
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          itemCount: 12,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return index == 0 ? _getStoryAddBox() : _getStoryBox(60, 60);
+          },
+        ),
       ),
     );
   }

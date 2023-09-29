@@ -2,9 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_app/constants/colors.dart';
 
 class shareBottomSheet extends StatelessWidget {
-  const shareBottomSheet({super.key});
+  const shareBottomSheet({this.controller, super.key});
+  final ScrollController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +41,26 @@ class shareBottomSheet extends StatelessWidget {
   Widget _getGridItems() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 44),
-      child: GridView.builder(
+      child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
-        itemCount: 40,
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 4,
-          crossAxisSpacing: 33,
-          mainAxisSpacing: 33,
-        ),
-        itemBuilder: (context, index) {
-          return Container(
-            color: Colors.amber,
-          );
-        },
+        controller: controller,
+        slivers: [
+          SliverGrid(
+            delegate: SliverChildBuilderDelegate(
+              childCount: 40,
+              (context, index) {
+                return Container(
+                  color: pinkColor,
+                );
+              },
+            ),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+            ),
+          ),
+        ],
       ),
     );
   }

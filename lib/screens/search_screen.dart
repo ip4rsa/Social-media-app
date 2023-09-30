@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:instagram_app/constants/colors.dart';
 
 class SerarchScreen extends StatelessWidget {
@@ -47,7 +48,48 @@ class SerarchScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              _getCatgoryList()
+              _getCatgoryList(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 17),
+                  child: GridView.custom(
+                    gridDelegate: SliverQuiltedGridDelegate(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      repeatPattern: QuiltedGridRepeatPattern.inverted,
+                      pattern: [
+                        QuiltedGridTile(2, 1),
+                        QuiltedGridTile(2, 2),
+                        QuiltedGridTile(1, 1),
+                        QuiltedGridTile(1, 1),
+                        QuiltedGridTile(1, 1),
+                      ],
+                    ),
+                    childrenDelegate:
+                        SliverChildBuilderDelegate((context, index) {
+                      return Container(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Image.asset(
+                              'assets/images/item$index.png',
+                            ),
+                          ),
+                        ),
+                      );
+                    }, childCount: 18),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -62,7 +104,7 @@ class SerarchScreen extends StatelessWidget {
         height: 30,
         child: ListView.builder(
           shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemCount: 8,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {

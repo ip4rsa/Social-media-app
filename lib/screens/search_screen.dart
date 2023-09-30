@@ -47,8 +47,51 @@ class SerarchScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              _getCatgoryList()
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _getCatgoryList() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: SizedBox(
+        height: 30,
+        child: ListView.builder(
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          itemCount: 8,
+          scrollDirection: Axis.horizontal,
+          itemBuilder: (context, index) {
+            return Container(
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(39, 43, 64, 1),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              margin: const EdgeInsets.only(left: 12, right: 12),
+              height: 30,
+              child: Center(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+                  child: Text(
+                    'Parsa $index',
+                    style: TextStyle(
+                      color: wihtColor,
+                      fontFamily: 'GM',
+                      fontSize: 12,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            );
+          },
         ),
       ),
     );

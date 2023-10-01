@@ -11,87 +11,62 @@ class SerarchScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: darkBlueColor,
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(left: 17, right: 17, top: 20),
-                width: 340,
-                height: 50,
-                decoration: const BoxDecoration(
-                  color: Color.fromRGBO(39, 43, 64, 1),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(13),
+        child: Column(
+          children: [
+            Expanded(
+              child: CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: _getSearchBox(),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    children: [
-                      Image.asset('assets/images/icon_search.png'),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 7),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              hintText: ' Search',
-                              hintStyle:
-                                  TextStyle(color: wihtColor, fontFamily: 'GB'),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Image.asset('assets/images/icon_scan.png'),
-                    ],
+                  SliverToBoxAdapter(
+                    child: _getCatgoryList(),
                   ),
-                ),
-              ),
-              _getCatgoryList(),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 17),
-                  child: GridView.custom(
-                    gridDelegate: SliverQuiltedGridDelegate(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      repeatPattern: QuiltedGridRepeatPattern.inverted,
-                      pattern: [
-                        QuiltedGridTile(2, 1),
-                        QuiltedGridTile(2, 2),
-                        QuiltedGridTile(1, 1),
-                        QuiltedGridTile(1, 1),
-                        QuiltedGridTile(1, 1),
-                      ],
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 17,
                     ),
-                    childrenDelegate:
-                        SliverChildBuilderDelegate((context, index) {
-                      return Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          child: FittedBox(
-                            fit: BoxFit.cover,
-                            child: Image.asset(
-                              'assets/images/item$index.png',
+                    sliver: SliverGrid(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        return Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
                             ),
                           ),
-                        ),
-                      );
-                    }, childCount: 18),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.asset(
+                                'assets/images/item$index.png',
+                              ),
+                            ),
+                          ),
+                        );
+                      }, childCount: 18),
+                      gridDelegate: SliverQuiltedGridDelegate(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 10,
+                        mainAxisSpacing: 10,
+                        repeatPattern: QuiltedGridRepeatPattern.inverted,
+                        pattern: [
+                          QuiltedGridTile(2, 1),
+                          QuiltedGridTile(2, 2),
+                          QuiltedGridTile(1, 1),
+                          QuiltedGridTile(1, 1),
+                          QuiltedGridTile(1, 1),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -103,7 +78,6 @@ class SerarchScreen extends StatelessWidget {
       child: SizedBox(
         height: 30,
         child: ListView.builder(
-          shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           itemCount: 8,
           scrollDirection: Axis.horizontal,
@@ -134,6 +108,42 @@ class SerarchScreen extends StatelessWidget {
               ),
             );
           },
+        ),
+      ),
+    );
+  }
+
+  Widget _getSearchBox() {
+    return Container(
+      margin: const EdgeInsets.only(left: 17, right: 17, top: 20),
+      width: 340,
+      height: 50,
+      decoration: const BoxDecoration(
+        color: Color.fromRGBO(39, 43, 64, 1),
+        borderRadius: BorderRadius.all(
+          Radius.circular(13),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        child: Row(
+          children: [
+            Image.asset('assets/images/icon_search.png'),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 7),
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    hintText: ' Search',
+                    hintStyle: TextStyle(color: wihtColor, fontFamily: 'GB'),
+                  ),
+                ),
+              ),
+            ),
+            Image.asset('assets/images/icon_scan.png'),
+          ],
         ),
       ),
     );

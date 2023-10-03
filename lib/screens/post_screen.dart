@@ -37,13 +37,18 @@ class PostScreen extends StatelessWidget {
                               child: Text('$index'),
                             );
                           },
-                        )
+                        ),
+                        TextField(),
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
+            Text(
+              'ogjrodihgo',
+              style: TextStyle(color: wihtColor, fontSize: 20),
+            )
           ],
         ),
       ),

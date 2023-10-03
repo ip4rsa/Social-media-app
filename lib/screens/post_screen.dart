@@ -10,11 +10,36 @@ class PostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: darkBlueColor,
-      body: const SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
-            Row(
-              children: [],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 25),
+              child: Row(
+                children: [
+                  Text(
+                    'Post',
+                    style: TextStyle(
+                      fontFamily: 'GB',
+                      fontSize: 17,
+                      color: wihtColor,
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Image.asset('assets/images/icon_arow_bottn.png'),
+                  const Spacer(),
+                  Text(
+                    'Next',
+                    style: TextStyle(
+                      fontFamily: 'GB',
+                      fontSize: 17,
+                      color: wihtColor,
+                    ),
+                  ),
+                  const SizedBox(width: 15),
+                  Image.asset('assets/images/icon_arow_right.png'),
+                ],
+              ),
             ),
           ],
         ),

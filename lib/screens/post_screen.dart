@@ -13,36 +13,40 @@ class PostScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 25),
-              child: Row(
-                children: [
-                  Text(
-                    'Post',
-                    style: TextStyle(
-                      fontFamily: 'GB',
-                      fontSize: 17,
-                      color: wihtColor,
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  Image.asset('assets/images/icon_arow_bottn.png'),
-                  const Spacer(),
-                  Text(
-                    'Next',
-                    style: TextStyle(
-                      fontFamily: 'GB',
-                      fontSize: 17,
-                      color: wihtColor,
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  Image.asset('assets/images/icon_arow_right.png'),
-                ],
-              ),
-            ),
+            _getHeaderSection(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _getHeaderSection() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 25),
+      child: Row(
+        children: [
+          Text(
+            'Post',
+            style: TextStyle(
+              fontFamily: 'GB',
+              fontSize: 17,
+              color: wihtColor,
+            ),
+          ),
+          const SizedBox(width: 15),
+          Image.asset('assets/images/icon_arow_bottn.png'),
+          const Spacer(),
+          Text(
+            'Next',
+            style: TextStyle(
+              fontFamily: 'GB',
+              fontSize: 17,
+              color: wihtColor,
+            ),
+          ),
+          const SizedBox(width: 15),
+          Image.asset('assets/images/icon_arow_right.png'),
+        ],
       ),
     );
   }

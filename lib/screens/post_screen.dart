@@ -10,45 +10,12 @@ class PostScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: darkBlueColor,
-      body: SafeArea(
+      body: const SafeArea(
         child: Column(
           children: [
-            Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 17),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          "assets/images/Rectangle54.png",
-                          width: 394,
-                          height: 375,
-                        ),
-                        GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 4),
-                          itemBuilder: (context, index) {
-                            return Container(
-                              color: Colors.amber,
-                              width: 20,
-                              height: 20,
-                              child: Text('$index'),
-                            );
-                          },
-                        ),
-                        TextField(),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+            Row(
+              children: [],
             ),
-            Text(
-              'ogjrodihgo',
-              style: TextStyle(color: wihtColor, fontSize: 20),
-            )
           ],
         ),
       ),

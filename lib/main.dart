@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_app/screens/activiti_screen.dart';
 import 'package:instagram_app/screens/post_screen.dart';
 import 'constants/colors.dart';
 
@@ -56,7 +57,7 @@ class InstagramApp extends StatelessWidget {
           ),
         ),
       ),
-      home: PostScreen(),
+      home: ActivitiScreen(),
     );
   }
 }

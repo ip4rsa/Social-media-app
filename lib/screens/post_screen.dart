@@ -11,7 +11,49 @@ class PostScreen extends StatelessWidget {
       backgroundColor: darkBlueColor,
       body: SafeArea(
         child: Column(
-          children: [_getSelectedPhoto()],
+          children: [
+            Expanded(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  slivers: [
+                    SliverGrid(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          return Center(
+                            child: Container(
+                              width: 128,
+                              height: 128,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                                child: FittedBox(
+                                  fit: BoxFit.cover,
+                                  child: Image.asset(
+                                    'assets/images/item$index.png',
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        childCount: 12,
+                      ),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 5,
+                        mainAxisSpacing: 5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

@@ -103,7 +103,7 @@ class PostScreen extends StatelessWidget {
                   ),
                 );
               },
-              childCount: 12,
+              childCount: 15,
             ),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,

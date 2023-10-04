@@ -10,50 +10,49 @@ class PostScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: darkBlueColor,
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
-                child: CustomScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  slivers: [
-                    SliverGrid(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          return Center(
-                            child: Container(
-                              width: 128,
-                              height: 128,
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.all(
-                                  Radius.circular(10),
-                                ),
-                                child: FittedBox(
-                                  fit: BoxFit.cover,
-                                  child: Image.asset(
-                                    'assets/images/item$index.png',
-                                  ),
-                                ),
-                              ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+          child: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
+            slivers: [
+              SliverToBoxAdapter(
+                child: _getHeaderSection(),
+              ),
+              SliverToBoxAdapter(
+                child: _getSelectedPhoto(),
+              ),
+              const SliverPadding(padding: EdgeInsets.symmetric(vertical: 5)),
+              SliverGrid(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    return Center(
+                      child: Container(
+                        width: 128,
+                        height: 128,
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.cover,
+                            child: Image.asset(
+                              'assets/images/item$index.png',
                             ),
-                          );
-                        },
-                        childCount: 12,
+                          ),
+                        ),
                       ),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 5,
-                        mainAxisSpacing: 5,
-                      ),
-                    ),
-                  ],
+                    );
+                  },
+                  childCount: 12,
+                ),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 5,
                 ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -91,17 +90,14 @@ class PostScreen extends StatelessWidget {
   }
 
   Widget _getSelectedPhoto() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
-      child: Container(
-        height: 394,
-        width: double.infinity,
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          child: Image.asset(
-            'assets/images/item1.png',
-            fit: BoxFit.cover,
-          ),
+    return Container(
+      height: 394,
+      width: double.infinity,
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(15)),
+        child: Image.asset(
+          'assets/images/item1.png',
+          fit: BoxFit.cover,
         ),
       ),
     );

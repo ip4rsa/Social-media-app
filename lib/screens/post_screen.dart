@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../constants/colors.dart';
 
 class PostScreen extends StatelessWidget {
@@ -12,9 +11,7 @@ class PostScreen extends StatelessWidget {
       backgroundColor: darkBlueColor,
       body: SafeArea(
         child: Column(
-          children: [
-            _getHeaderSection(),
-          ],
+          children: [_getSelectedPhoto()],
         ),
       ),
     );
@@ -47,6 +44,23 @@ class PostScreen extends StatelessWidget {
           const SizedBox(width: 15),
           Image.asset('assets/images/icon_arow_right.png'),
         ],
+      ),
+    );
+  }
+
+  Widget _getSelectedPhoto() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 17, vertical: 5),
+      child: Container(
+        height: 394,
+        width: double.infinity,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          child: Image.asset(
+            'assets/images/item1.png',
+            fit: BoxFit.cover,
+          ),
+        ),
       ),
     );
   }

@@ -52,6 +52,7 @@ class _ActivitiScreenState extends State<ActivitiScreen>
                 controller: _tabController,
                 children: [
                   CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
@@ -61,6 +62,7 @@ class _ActivitiScreenState extends State<ActivitiScreen>
                     ],
                   ),
                   CustomScrollView(
+                    physics: const BouncingScrollPhysics(),
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
@@ -79,17 +81,34 @@ class _ActivitiScreenState extends State<ActivitiScreen>
   }
 
   Widget _getRow() {
-    return Row(
-      children: [
-        Container(
-          width: 6,
-          height: 6,
-          decoration: BoxDecoration(
-            color: pinkColor,
-            shape: BoxShape.circle,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      child: Row(
+        children: [
+          Container(
+            width: 6,
+            height: 6,
+            decoration: BoxDecoration(
+              color: pinkColor,
+              shape: BoxShape.circle,
+            ),
           ),
-        )
-      ],
+          const SizedBox(width: 7),
+          SizedBox(
+            width: 40,
+            height: 40,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
+              child: FittedBox(
+                child: Image.asset('assets/images/Parsa.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

@@ -51,18 +51,24 @@ class _ActivitiScreenState extends State<ActivitiScreen>
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  Container(
-                    color: Colors.blue,
-                    child: Center(
-                      child: Text('data 2'),
-                    ),
+                  CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return Text('Data 1');
+                        }, childCount: 50),
+                      )
+                    ],
                   ),
-                  Container(
-                    color: Colors.amber,
-                    child: Center(
-                      child: Text('data 1'),
-                    ),
-                  )
+                  CustomScrollView(
+                    slivers: [
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return Text('Data 2');
+                        }, childCount: 50),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),

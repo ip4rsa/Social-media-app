@@ -55,7 +55,7 @@ class _ActivitiScreenState extends State<ActivitiScreen>
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
-                          return Text('Data 1');
+                          return _getRow();
                         }, childCount: 50),
                       )
                     ],
@@ -75,6 +75,12 @@ class _ActivitiScreenState extends State<ActivitiScreen>
           ],
         ),
       ),
+    );
+  }
+
+  Widget _getRow() {
+    return Row(
+      children: [],
     );
   }
 }

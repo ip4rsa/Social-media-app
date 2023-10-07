@@ -21,28 +21,52 @@ class _ActivitiScreenState extends State<ActivitiScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: darkBlueColor,
       body: SafeArea(
-        child: Container(
-          height: 70,
-          color: darkBlueColor,
-          child: TabBar(
-            controller: _tabController,
-            labelStyle: const TextStyle(
-              fontFamily: 'GB',
-              fontSize: 16,
+        child: Column(
+          children: [
+            Container(
+              height: 70,
+              color: darkBlueColor,
+              child: TabBar(
+                controller: _tabController,
+                labelStyle: const TextStyle(
+                  fontFamily: 'GB',
+                  fontSize: 16,
+                ),
+                indicatorColor: pinkColor,
+                indicatorWeight: 3,
+                indicatorPadding: const EdgeInsets.symmetric(horizontal: 17),
+                tabs: const [
+                  Tab(
+                    text: 'You',
+                  ),
+                  Tab(
+                    text: 'Following',
+                  ),
+                ],
+              ),
             ),
-            indicatorColor: pinkColor,
-            indicatorWeight: 3,
-            indicatorPadding: const EdgeInsets.symmetric(horizontal: 17),
-            tabs: const [
-              Tab(
-                text: 'You',
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  Container(
+                    color: Colors.blue,
+                    child: Center(
+                      child: Text('data 2'),
+                    ),
+                  ),
+                  Container(
+                    color: Colors.amber,
+                    child: Center(
+                      child: Text('data 1'),
+                    ),
+                  )
+                ],
               ),
-              Tab(
-                text: 'Following',
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

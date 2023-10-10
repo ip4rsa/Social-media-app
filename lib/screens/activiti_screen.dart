@@ -93,7 +93,7 @@ class _ActivitiScreenState extends State<ActivitiScreen>
               shape: BoxShape.circle,
             ),
           ),
-          const SizedBox(width: 7),
+          const SizedBox(width: 8),
           SizedBox(
             width: 40,
             height: 40,
@@ -102,10 +102,61 @@ class _ActivitiScreenState extends State<ActivitiScreen>
                 Radius.circular(10),
               ),
               child: FittedBox(
-                child: Image.asset('assets/images/Parsa.png'),
                 fit: BoxFit.cover,
+                child: Image.asset('assets/images/Parsa.png'),
               ),
             ),
+          ),
+          const SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    'Parsa Sajjadian',
+                    style: TextStyle(
+                      fontFamily: 'GB',
+                      color: wihtColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  const SizedBox(width: 5),
+                  const Text(
+                    'Started following',
+                    style: TextStyle(
+                      fontFamily: 'GM',
+                      color: Color(0xffC5C5C5),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 5),
+              const Row(
+                children: [
+                  Text(
+                    "you",
+                    style: TextStyle(
+                        fontSize: 12,
+                        fontFamily: 'GM',
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xffC5C5C5)),
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    "3min",
+                    style: TextStyle(
+                        fontSize: 10,
+                        fontFamily: 'GM',
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xffC5C5C5)),
+                  ),
+                ],
+              )
+            ],
           )
         ],
       ),

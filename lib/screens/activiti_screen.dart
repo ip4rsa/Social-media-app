@@ -66,7 +66,7 @@ class _ActivitiScreenState extends State<ActivitiScreen>
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
-                          return Text('Data 2');
+                          return const Text('Data 2');
                         }, childCount: 2),
                       )
                     ],
@@ -159,17 +159,38 @@ class _ActivitiScreenState extends State<ActivitiScreen>
             ],
           ),
           const Spacer(),
-          OutlinedButton(
-            onPressed: () {},
-            style: OutlinedButton.styleFrom(
-                side: BorderSide(color: wihtColor, width: 2),
-                shape: const ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(10)))),
-            child: Text(
-              'Massage',
-              style: TextStyle(fontSize: 11, color: wihtColor),
-            ),
-          )
+          // OutlinedButton(
+          //   onPressed: () {},
+          //   style: OutlinedButton.styleFrom(
+          //       side: BorderSide(color: wihtColor, width: 2),
+          //       shape: const ContinuousRectangleBorder(
+          //           borderRadius: BorderRadius.all(Radius.circular(10)))),
+          //   child: Text(
+          //     'Massage',
+          //     style: TextStyle(fontSize: 11, color: wihtColor),
+          //   ),
+          // ),
+
+          // ElevatedButton(
+          //   style: ElevatedButton.styleFrom(
+          //     shape: const ContinuousRectangleBorder(
+          //       borderRadius: BorderRadius.all(
+          //         Radius.circular(10),
+          //       ),
+          //     ),
+          //   ),
+          //   onPressed: () {},
+          //   child: const Text('Fallow'),
+          // ),
+
+          // SizedBox(
+          //   width: 40,
+          //   height: 40,
+          //   child: ClipRRect(
+          //     borderRadius: const BorderRadius.all(Radius.circular(10)),
+          //     child: Image.asset('assets/images/item4.png', fit: BoxFit.cover),
+          //   ),
+          // )
         ],
       ),
     );

@@ -43,7 +43,7 @@ class InstagramApp extends StatelessWidget {
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             elevation: 0,
-            minimumSize: const Size(129, 46),
+            // minimumSize: const Size(129, 46),
             backgroundColor: pinkColor,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(

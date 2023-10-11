@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_app/screens/activiti_screen.dart';
 import 'package:instagram_app/screens/post_screen.dart';
+import 'package:instagram_app/screens/profile_screen.dart';
 import 'constants/colors.dart';
 
 void main() {
@@ -57,7 +58,7 @@ class InstagramApp extends StatelessWidget {
           ),
         ),
       ),
-      home: ActivitiScreen(),
+      home: ProfileScreen(),
     );
   }
 }

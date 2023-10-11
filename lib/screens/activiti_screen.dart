@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_app/constants/colors.dart';
+import 'package:instagram_app/model/enums/activitiEnum.dart';
 
 class ActivitiScreen extends StatefulWidget {
   const ActivitiScreen({super.key});
@@ -54,11 +55,60 @@ class _ActivitiScreenState extends State<ActivitiScreen>
                   CustomScrollView(
                     physics: const BouncingScrollPhysics(),
                     slivers: [
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 30, top: 20),
+                          child: Text(
+                            "ToDay",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'GB',
+                              color: wihtColor,
+                            ),
+                          ),
+                        ),
+                      ),
                       SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
-                          return _getRow();
+                          return _getRow(ActivitiStatus.likes);
                         }, childCount: 2),
-                      )
+                      ),
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 30, top: 20),
+                          child: Text(
+                            "New",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'GB',
+                              color: wihtColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return _getRow(ActivitiStatus.fallowBack);
+                        }, childCount: 4),
+                      ),
+                      SliverToBoxAdapter(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 30, top: 20),
+                          child: Text(
+                            "this wieek",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'GB',
+                              color: wihtColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return _getRow(ActivitiStatus.fallowing);
+                        }, childCount: 3),
+                      ),
                     ],
                   ),
                   CustomScrollView(
@@ -66,9 +116,9 @@ class _ActivitiScreenState extends State<ActivitiScreen>
                     slivers: [
                       SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
-                          return const Text('Data 2');
-                        }, childCount: 2),
-                      )
+                          return _getRow(ActivitiStatus.fallowBack);
+                        }, childCount: 20),
+                      ),
                     ],
                   ),
                 ],
@@ -80,7 +130,7 @@ class _ActivitiScreenState extends State<ActivitiScreen>
     );
   }
 
-  Widget _getRow() {
+  Widget _getRow(ActivitiStatus status) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: Row(
@@ -159,40 +209,49 @@ class _ActivitiScreenState extends State<ActivitiScreen>
             ],
           ),
           const Spacer(),
-          // OutlinedButton(
-          //   onPressed: () {},
-          //   style: OutlinedButton.styleFrom(
-          //       side: BorderSide(color: wihtColor, width: 2),
-          //       shape: const ContinuousRectangleBorder(
-          //           borderRadius: BorderRadius.all(Radius.circular(10)))),
-          //   child: Text(
-          //     'Massage',
-          //     style: TextStyle(fontSize: 11, color: wihtColor),
-          //   ),
-          // ),
-
-          // ElevatedButton(
-          //   style: ElevatedButton.styleFrom(
-          //     shape: const ContinuousRectangleBorder(
-          //       borderRadius: BorderRadius.all(
-          //         Radius.circular(10),
-          //       ),
-          //     ),
-          //   ),
-          //   onPressed: () {},
-          //   child: const Text('Fallow'),
-          // ),
-
-          // SizedBox(
-          //   width: 40,
-          //   height: 40,
-          //   child: ClipRRect(
-          //     borderRadius: const BorderRadius.all(Radius.circular(10)),
-          //     child: Image.asset('assets/images/item4.png', fit: BoxFit.cover),
-          //   ),
-          // )
+          _getActivitiRowItems(status)
         ],
       ),
     );
+  }
+
+  Widget _getActivitiRowItems(ActivitiStatus status) {
+    switch (status) {
+      case ActivitiStatus.fallowing:
+        return OutlinedButton(
+          onPressed: () {},
+          style: OutlinedButton.styleFrom(
+              side: BorderSide(color: wihtColor, width: 2),
+              shape: const ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10)))),
+          child: Text(
+            'Massage',
+            style: TextStyle(fontSize: 11, color: wihtColor),
+          ),
+        );
+      case ActivitiStatus.fallowBack:
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: const ContinuousRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+          ),
+          onPressed: () {},
+          child: const Text('Fallow'),
+        );
+      case ActivitiStatus.likes:
+        return SizedBox(
+          width: 40,
+          height: 40,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            child: Image.asset('assets/images/item4.png', fit: BoxFit.cover),
+          ),
+        );
+      default:
+        return const Text('Erore');
+    }
   }
 }

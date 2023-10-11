@@ -82,7 +82,7 @@ class _ActivitiScreenState extends State<ActivitiScreen>
 
   Widget _getRow() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
       child: Row(
         children: [
           Container(
@@ -157,6 +157,18 @@ class _ActivitiScreenState extends State<ActivitiScreen>
                 ],
               )
             ],
+          ),
+          const Spacer(),
+          OutlinedButton(
+            onPressed: () {},
+            style: OutlinedButton.styleFrom(
+                side: BorderSide(color: wihtColor, width: 2),
+                shape: const ContinuousRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)))),
+            child: Text(
+              'Massage',
+              style: TextStyle(fontSize: 11, color: wihtColor),
+            ),
           )
         ],
       ),

@@ -12,10 +12,17 @@ class ProfileScreen extends StatelessWidget {
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             SliverAppBar(
+              pinned: true,
+              actions: [
+                Padding(
+                  padding: EdgeInsets.only(right: 17, top: 17),
+                  child: const Icon(Icons.menu),
+                ),
+              ],
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(14),
                 child: Container(
-                  height: 15,
+                  height: 20,
                   decoration: BoxDecoration(
                     color: darkBlueColor,
                     borderRadius: const BorderRadius.only(
@@ -33,6 +40,9 @@ class ProfileScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
+            ),
+            SliverToBoxAdapter(
+              child: _getHeaderprofile(),
             )
           ];
         },

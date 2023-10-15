@@ -8,46 +8,68 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: darkBlueColor,
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
-              pinned: true,
-              actions: [
-                Padding(
-                  padding: EdgeInsets.only(right: 17, top: 17),
-                  child: const Icon(Icons.menu),
-                ),
-              ],
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(14),
-                child: Container(
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: darkBlueColor,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25),
+      body: DefaultTabController(
+        length: 2,
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                // pinned: true,
+                actions: const [
+                  Padding(
+                    padding: EdgeInsets.only(right: 17, top: 17),
+                    child: Icon(Icons.menu),
+                  ),
+                ],
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(14),
+                  child: Container(
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: darkBlueColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              backgroundColor: darkBlueColor,
-              expandedHeight: 170,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  'assets/images/item4.png',
-                  fit: BoxFit.cover,
+                backgroundColor: darkBlueColor,
+                expandedHeight: 170,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset(
+                    'assets/images/item4.png',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: _getHeaderprofile(),
-            )
-          ];
-        },
-        body: Container(
-          color: darkBlueColor,
+              SliverToBoxAdapter(
+                child: _getHeaderprofile(),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                floating: true,
+                delegate: TabBarViewDelegate(
+                  TabBar(
+                    tabs: [
+                      Text('data1'),
+                      Text('data2'),
+                    ],
+                  ),
+                ),
+              )
+            ];
+          },
+          body: TabBarView(
+            children: [
+              Container(
+                color: Colors.amber,
+              ),
+              Container(
+                color: Colors.blueGrey,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -103,5 +125,29 @@ class ProfileScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class TabBarViewDelegate extends SliverPersistentHeaderDelegate {
+  TabBarViewDelegate(this._tabBar);
+  final TabBar _tabBar;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      child: _tabBar,
+    );
+  }
+
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return false;
   }
 }

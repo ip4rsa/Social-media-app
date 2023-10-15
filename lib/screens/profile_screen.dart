@@ -106,9 +106,9 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisSpacing: 7,
                         repeatPattern: QuiltedGridRepeatPattern.inverted,
                         pattern: [
-                          QuiltedGridTile(1, 1),
-                          QuiltedGridTile(1, 1),
-                          QuiltedGridTile(1, 1),
+                          const QuiltedGridTile(1, 1),
+                          const QuiltedGridTile(1, 1),
+                          const QuiltedGridTile(1, 1),
                         ],
                       ),
                     ),
@@ -149,7 +149,7 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisSpacing: 7,
                         repeatPattern: QuiltedGridRepeatPattern.inverted,
                         pattern: [
-                          QuiltedGridTile(1, 1),
+                          const QuiltedGridTile(1, 1),
                         ],
                       ),
                     ),

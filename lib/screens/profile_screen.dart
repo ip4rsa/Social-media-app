@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:instagram_app/constants/colors.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -51,6 +54,9 @@ class ProfileScreen extends StatelessWidget {
                 floating: true,
                 delegate: TabBarViewDelegate(
                   TabBar(
+                    indicatorColor: pinkColor,
+                    indicatorWeight: 3,
+                    physics: BouncingScrollPhysics(),
                     tabs: [
                       Text('data1'),
                       Text('data2'),
@@ -62,11 +68,87 @@ class ProfileScreen extends StatelessWidget {
           },
           body: TabBarView(
             children: [
-              Container(
-                color: Colors.amber,
+              CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 17,
+                    ),
+                    sliver: SliverGrid(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        return Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.asset(
+                                'assets/images/item$index.png',
+                              ),
+                            ),
+                          ),
+                        );
+                      }, childCount: 18),
+                      gridDelegate: SliverQuiltedGridDelegate(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 7,
+                        mainAxisSpacing: 7,
+                        repeatPattern: QuiltedGridRepeatPattern.inverted,
+                        pattern: [
+                          QuiltedGridTile(1, 1),
+                          QuiltedGridTile(1, 1),
+                          QuiltedGridTile(1, 1),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              Container(
-                color: Colors.blueGrey,
+              CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 17,
+                    ),
+                    sliver: SliverGrid(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        return Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.asset(
+                                'assets/images/item$index.png',
+                              ),
+                            ),
+                          ),
+                        );
+                      }, childCount: 18),
+                      gridDelegate: SliverQuiltedGridDelegate(
+                        crossAxisCount: 1,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                        repeatPattern: QuiltedGridRepeatPattern.inverted,
+                        pattern: [
+                          QuiltedGridTile(1, 1),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -77,7 +159,7 @@ class ProfileScreen extends StatelessWidget {
 
   Widget _getHeaderprofile() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 17),
+      padding: const EdgeInsets.only(right: 17, left: 17, bottom: 25),
       child: Row(
         children: [
           Container(
@@ -136,6 +218,7 @@ class TabBarViewDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
+      color: darkBlueColor,
       child: _tabBar,
     );
   }

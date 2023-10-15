@@ -58,8 +58,12 @@ class ProfileScreen extends StatelessWidget {
                     indicatorWeight: 3,
                     physics: BouncingScrollPhysics(),
                     tabs: [
-                      Text('data1'),
-                      Text('data2'),
+                      Tab(
+                        icon: Image.asset('assets/images/icon_phpto.png'),
+                      ),
+                      Tab(
+                        icon: Image.asset('assets/images/icon_saved.png'),
+                      ),
                     ],
                   ),
                 ),
@@ -73,6 +77,7 @@ class ProfileScreen extends StatelessWidget {
                   SliverPadding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 17,
+                      vertical: 20,
                     ),
                     sliver: SliverGrid(
                       delegate: SliverChildBuilderDelegate((context, index) {
@@ -115,6 +120,7 @@ class ProfileScreen extends StatelessWidget {
                   SliverPadding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 17,
+                      vertical: 20,
                     ),
                     sliver: SliverGrid(
                       delegate: SliverChildBuilderDelegate((context, index) {
@@ -139,8 +145,8 @@ class ProfileScreen extends StatelessWidget {
                       }, childCount: 18),
                       gridDelegate: SliverQuiltedGridDelegate(
                         crossAxisCount: 1,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 15,
+                        crossAxisSpacing: 7,
+                        mainAxisSpacing: 7,
                         repeatPattern: QuiltedGridRepeatPattern.inverted,
                         pattern: [
                           QuiltedGridTile(1, 1),

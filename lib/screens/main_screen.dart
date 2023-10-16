@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_app/constants/colors.dart';
+import 'package:instagram_app/screens/activiti_screen.dart';
+import 'package:instagram_app/screens/home_screen.dart';
+import 'package:instagram_app/screens/post_screen.dart';
+import 'package:instagram_app/screens/profile_screen.dart';
+import 'package:instagram_app/screens/search_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -14,6 +19,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: Container(
         height: 83,
         decoration: const BoxDecoration(
@@ -28,6 +34,7 @@ class _MainScreenState extends State<MainScreen> {
             topRight: Radius.circular(15),
           ),
           child: BottomNavigationBar(
+            elevation: 20,
             backgroundColor: darkBlueColor,
             showSelectedLabels: false,
             showUnselectedLabels: false,
@@ -112,17 +119,10 @@ class _MainScreenState extends State<MainScreen> {
 
 List<Widget> _changeScreen() {
   return <Widget>[
-    Container(
-      color: Color.fromARGB(255, 41, 199, 104),
-    ),
-    Container(
-      color: const Color.fromARGB(255, 177, 45, 45),
-    ),
-    Container(
-      color: Color.fromARGB(255, 228, 182, 43),
-    ),
-    Container(
-      color: Color.fromARGB(255, 94, 103, 225),
-    ),
+    HomeScreen(),
+    SerarchScreen(),
+    PostScreen(),
+    ActivitiScreen(),
+    ProfileScreen(),
   ];
 }

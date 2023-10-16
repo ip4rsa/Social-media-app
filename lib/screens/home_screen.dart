@@ -21,30 +21,6 @@ class HomeScreen extends StatelessWidget {
       body: CustomScrollView(
         physics: BouncingScrollPhysics(),
         slivers: [
-          SliverToBoxAdapter(
-            child: ElevatedButton(
-              onPressed: () {
-                showModalBottomSheet(
-                  isScrollControlled: true,
-                  backgroundColor: Colors.transparent,
-                  barrierColor: Colors.transparent,
-                  context: context,
-                  builder: (context) => Padding(
-                    padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom),
-                    child: DraggableScrollableSheet(
-                      initialChildSize: 0.45,
-                      maxChildSize: 0.7,
-                      minChildSize: 0.3,
-                      builder: (context, scrollController) =>
-                          shareBottomSheet(controller: scrollController),
-                    ),
-                  ),
-                );
-              },
-              child: Text('data'),
-            ),
-          ),
           SliverToBoxAdapter(child: _storysBox()),
           SliverList(
             delegate: SliverChildBuilderDelegate(
@@ -56,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 15),
                       _getPosterHeader(context),
                       const SizedBox(height: 15),
-                      _getPoster()
+                      _getPoster(context)
                     ],
                   ),
                 );
@@ -82,7 +58,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 15),
               _getPosterHeader(context),
               const SizedBox(height: 15),
-              _getPoster()
+              _getPoster(context)
             ],
           ),
         );
@@ -90,7 +66,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _getPoster() {
+  Widget _getPoster(BuildContext context) {
     return Container(
       width: 394,
       height: 440,
@@ -170,7 +146,28 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                       InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            showModalBottomSheet(
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              barrierColor: Colors.transparent,
+                              context: context,
+                              builder: (context) => Padding(
+                                padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context)
+                                        .viewInsets
+                                        .bottom),
+                                child: DraggableScrollableSheet(
+                                  initialChildSize: 0.45,
+                                  maxChildSize: 0.7,
+                                  minChildSize: 0.3,
+                                  builder: (context, scrollController) =>
+                                      shareBottomSheet(
+                                          controller: scrollController),
+                                ),
+                              ),
+                            );
+                          },
                           child: Image.asset('assets/images/Group 44.png')),
                       Image.asset('assets/images/Vector (2).png'),
                     ],

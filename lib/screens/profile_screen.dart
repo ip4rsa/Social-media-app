@@ -7,156 +7,154 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: darkBlueColor,
-        body: DefaultTabController(
-          length: 2,
-          child: NestedScrollView(
-            headerSliverBuilder: (context, innerBoxIsScrolled) {
-              return [
-                SliverAppBar(
-                  // pinned: true,
-                  actions: const [
-                    Padding(
-                      padding: EdgeInsets.only(right: 17, top: 17),
-                      child: Icon(Icons.menu),
-                    ),
-                  ],
-                  bottom: PreferredSize(
-                    preferredSize: const Size.fromHeight(14),
-                    child: Container(
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: darkBlueColor,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(25),
-                          topRight: Radius.circular(25),
-                        ),
+    return Scaffold(
+      backgroundColor: darkBlueColor,
+      body: DefaultTabController(
+        length: 2,
+        child: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                // pinned: true,
+                actions: const [
+                  Padding(
+                    padding: EdgeInsets.only(right: 17, top: 17),
+                    child: Icon(Icons.menu),
+                  ),
+                ],
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(14),
+                  child: Container(
+                    height: 20,
+                    decoration: BoxDecoration(
+                      color: darkBlueColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        topRight: Radius.circular(25),
                       ),
                     ),
                   ),
-                  backgroundColor: darkBlueColor,
-                  expandedHeight: 170,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: Image.asset(
-                      'assets/images/item4.png',
-                      fit: BoxFit.cover,
-                    ),
+                ),
+                backgroundColor: darkBlueColor,
+                expandedHeight: 170,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset(
+                    'assets/images/item4.png',
+                    fit: BoxFit.cover,
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: _getHeaderprofile(),
+              ),
+              SliverToBoxAdapter(
+                child: _getHeaderprofile(),
+              ),
+              SliverPersistentHeader(
+                pinned: true,
+                floating: true,
+                delegate: TabBarViewDelegate(
+                  TabBar(
+                    indicatorColor: pinkColor,
+                    indicatorWeight: 3,
+                    physics: BouncingScrollPhysics(),
+                    tabs: [
+                      Tab(
+                        icon: Image.asset('assets/images/icon_phpto.png'),
+                      ),
+                      Tab(
+                        icon: Image.asset('assets/images/icon_saved.png'),
+                      ),
+                    ],
+                  ),
                 ),
-                SliverPersistentHeader(
-                  pinned: true,
-                  floating: true,
-                  delegate: TabBarViewDelegate(
-                    TabBar(
-                      indicatorColor: pinkColor,
-                      indicatorWeight: 3,
-                      physics: BouncingScrollPhysics(),
-                      tabs: [
-                        Tab(
-                          icon: Image.asset('assets/images/icon_phpto.png'),
-                        ),
-                        Tab(
-                          icon: Image.asset('assets/images/icon_saved.png'),
-                        ),
-                      ],
+              )
+            ];
+          },
+          body: TabBarView(
+            children: [
+              CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 17,
+                      vertical: 20,
+                    ),
+                    sliver: SliverGrid(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        return Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.asset(
+                                'assets/images/item$index.png',
+                              ),
+                            ),
+                          ),
+                        );
+                      }, childCount: 18),
+                      gridDelegate: SliverQuiltedGridDelegate(
+                        crossAxisCount: 3,
+                        crossAxisSpacing: 7,
+                        mainAxisSpacing: 7,
+                        repeatPattern: QuiltedGridRepeatPattern.inverted,
+                        pattern: [
+                          const QuiltedGridTile(1, 1),
+                          const QuiltedGridTile(1, 1),
+                          const QuiltedGridTile(1, 1),
+                        ],
+                      ),
                     ),
                   ),
-                )
-              ];
-            },
-            body: TabBarView(
-              children: [
-                CustomScrollView(
-                  slivers: [
-                    SliverPadding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 17,
-                        vertical: 20,
-                      ),
-                      sliver: SliverGrid(
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          return Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
+                ],
+              ),
+              CustomScrollView(
+                slivers: [
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 17,
+                      vertical: 20,
+                    ),
+                    sliver: SliverGrid(
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        return Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.asset(
+                                'assets/images/item$index.png',
                               ),
                             ),
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                              child: FittedBox(
-                                fit: BoxFit.cover,
-                                child: Image.asset(
-                                  'assets/images/item$index.png',
-                                ),
-                              ),
-                            ),
-                          );
-                        }, childCount: 18),
-                        gridDelegate: SliverQuiltedGridDelegate(
-                          crossAxisCount: 3,
-                          crossAxisSpacing: 7,
-                          mainAxisSpacing: 7,
-                          repeatPattern: QuiltedGridRepeatPattern.inverted,
-                          pattern: [
-                            const QuiltedGridTile(1, 1),
-                            const QuiltedGridTile(1, 1),
-                            const QuiltedGridTile(1, 1),
-                          ],
-                        ),
+                          ),
+                        );
+                      }, childCount: 18),
+                      gridDelegate: SliverQuiltedGridDelegate(
+                        crossAxisCount: 1,
+                        crossAxisSpacing: 7,
+                        mainAxisSpacing: 7,
+                        repeatPattern: QuiltedGridRepeatPattern.inverted,
+                        pattern: [
+                          const QuiltedGridTile(1, 1),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-                CustomScrollView(
-                  slivers: [
-                    SliverPadding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 17,
-                        vertical: 20,
-                      ),
-                      sliver: SliverGrid(
-                        delegate: SliverChildBuilderDelegate((context, index) {
-                          return Container(
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                              child: FittedBox(
-                                fit: BoxFit.cover,
-                                child: Image.asset(
-                                  'assets/images/item$index.png',
-                                ),
-                              ),
-                            ),
-                          );
-                        }, childCount: 18),
-                        gridDelegate: SliverQuiltedGridDelegate(
-                          crossAxisCount: 1,
-                          crossAxisSpacing: 7,
-                          mainAxisSpacing: 7,
-                          repeatPattern: QuiltedGridRepeatPattern.inverted,
-                          pattern: [
-                            const QuiltedGridTile(1, 1),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

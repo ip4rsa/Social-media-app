@@ -27,21 +27,28 @@ class _MainScreenState extends State<MainScreen> {
             _selectedIndexBottm = index;
           });
         },
-        items: const [
+        items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.airplay),
+            icon: Image.asset('assets/images/icon_home_notAc.png'),
+            activeIcon: Image.asset('assets/images/icon_active_home.png'),
             label: 'A',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.back_hand_rounded),
+            icon: Image.asset('assets/images/icon_search_navigation.png'),
+            activeIcon:
+                Image.asset('assets/images/icon_search_navigation_active.png'),
             label: 'B',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.air),
+            icon: Image.asset('assets/images/icon_add_navigation.png'),
+            activeIcon:
+                Image.asset('assets/images/icon_add_navigation_active.png'),
             label: 'C',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.cabin),
+            icon: Image.asset('assets/images/icon_activity_navigation.png'),
+            activeIcon: Image.asset(
+                'assets/images/icon_activity_navigation_active.png'),
             label: 'D',
           ),
         ],

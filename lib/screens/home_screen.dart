@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
       ),
       backgroundColor: darkBlueColor,
       body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(child: _storysBox()),
           SliverList(
